@@ -9,9 +9,9 @@ development:
   reconnect: false
   database: front_end_challenge
   pool: 5
-  username: yiftee
-  password: WeyeNotIT
-  socket: /tmp/mysql.sock
+  username: 
+  password:
+  socket: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,9 +22,9 @@ test:
   reconnect: false
   database: front_end_challenge_test
   pool: 5
-  username: yiftee
-  password: WeyeNotIT
-  socket: /tmp/mysql.sock
+  username: 
+  password: 
+  socket: 
 
 production:
   adapter: mysql2
@@ -32,6 +32,6 @@ production:
   reconnect: false
   database: front_end_challenge_production
   pool: 5
-  username: yiftee
-  password: WeyeNotIT
-  socket: /tmp/mysql.sock
+  username: 
+  password: 
+  socket: 
