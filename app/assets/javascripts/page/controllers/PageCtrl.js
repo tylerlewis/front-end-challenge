@@ -11,12 +11,10 @@ angular.module("page.controllers").controller("PageCtrl", [
 '$interval',
 '$http',
 '$modal',
-'$route',
-'$routeParams',
 '$location',
 '$anchorScroll',
 'pageService',
-function($scope, $log, $window, $interval, $http, $modal, $route, $routeParams, $location, $anchorScroll, pageService){
+function($scope, $log, $window, $interval, $http, $modal, $location, $anchorScroll, pageService){
 
 
 	$scope.pageService = pageService;
