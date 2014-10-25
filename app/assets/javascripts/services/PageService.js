@@ -20,9 +20,16 @@ function($http, $q){
 	pageService.smsMemo = {};
 	pageService.emailMemo = {};
 
+	// Send valid message with valid list of recipients to server
 	pageService.sendMessage = function(recipients, message){
 		
+		$http.post('/programming_challenge/send', JSON.stringify({message: message, recipients: recipients}))
+    	.success(function(data, status, headers, config) {
 
+    	})
+    	.error(function(data, status, headers, config) {
+
+    	});
 
 	};
 
@@ -48,12 +55,24 @@ function($http, $q){
 		pageService.emailMemo[validRecipient.email] = true;
 		
 		var newRecipient = {
-      recipientName: validRecipient.recipientName,
+      name: validRecipient.name,
       sms: validRecipient.sms,
       email: validRecipient.email
     };
 
+    // Add new recipient to list of recipients for message
     pageService.recipients.push(newRecipient);
+
+    // Send POST request to server to add new recipient to database
+    $http.post('/programming_challenge/add', JSON.stringify(newRecipient))
+    	.success(function(data, status, headers, config) {
+
+    	})
+    	.error(function(data, status, headers, config) {
+
+    	});
+
+    // Invoke callback to refresh controller's currentRecipient object
     callback();
 		
 	};
