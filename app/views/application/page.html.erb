@@ -14,13 +14,13 @@
 
 		<div class="messageBox">
 			<form>
-				<input type="text" placeholder="Name"></input>
-				<input type="text" placeholder="Phone Number (SMS)"></input>
-				<input type="text" placeholder="Email"></input>
-				<button type="submit">Add Recipient</button>
-				<textarea type="text" placeholder="Message"></textarea>
-				<button type="submit">Send Message</button>
-		</form>
+				<input type="text" placeholder="Name" ng-model="currentRecipient.recipientName"></input>
+				<input type="text" placeholder="Phone Number (SMS)" ng-model="currentRecipient.sms"></input>
+				<input type="text" placeholder="Email" ng-model="currentRecipient.email"></input>
+				<button ng-click="addRecipient(currentRecipient)">Add Recipient</button>
+				<textarea type="text" placeholder="Message" ng-model="message"></textarea>
+				<button ng-click="pageService.sendMessage(recipients, message)">Send Message</button>
+			</form>
 		</div>
 
 	</div>
