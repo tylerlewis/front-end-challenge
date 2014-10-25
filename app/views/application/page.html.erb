@@ -14,7 +14,7 @@
 
 		<div class="messageBox">
 			<form name="messageForm">
-				<input type="text" name="name" placeholder="Name" ng-model="currentRecipient.recipientName"></input>
+				<input type="text" name="name" placeholder="Name" ng-model="currentRecipient.name"></input>
 				<input type="text" name="sms" placeholder="Phone Number" ng-model="currentRecipient.sms"></input>
 				<input type="text" name="emai" placeholder="Email" ng-model="currentRecipient.email"></input>
 				<button ng-click="addRecipient(currentRecipient)">Add Recipient</button>
@@ -32,7 +32,7 @@
 					<td style="width: 400px; border: 1px solid black">Email</td>
 				</tr>
 				<tr ng-repeat="recipient in recipients">
-					<td style="width: 200px; border: 1px solid black">{{ recipient.recipientName }}</td>
+					<td style="width: 200px; border: 1px solid black">{{ recipient.name }}</td>
 					<td style="width: 200px; border: 1px solid black">{{ recipient.sms }}</td>
 					<td style="width: 400px; border: 1px solid black">{{ recipient.email }}</td>
 				</tr>
