@@ -27,6 +27,11 @@ function($scope, $log, $window, $interval, $http, $modal, $location, $anchorScro
   // Add a new recipient to current list
   $scope.addRecipient = function(recipient) {
 
+    // Do not add a recipient unless a valid sms or email address is provided
+    if(!recipient.sms && !recipient.email) {
+      return;
+    }
+
     var newRecipient = {
       recipientName: recipient.recipientName,
       sms: recipient.sms,
@@ -34,9 +39,11 @@ function($scope, $log, $window, $interval, $http, $modal, $location, $anchorScro
     };
 
     $scope.recipients.push(newRecipient);
+    $scope.currentRecipient = {};
 
   };
 
   $scope.message = '';
 
 }]);
+
