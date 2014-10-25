@@ -13,12 +13,13 @@
 		<div class="panel-body"></div>
 
 		<div class="messageBox">
-			<form>
-				<input type="text" placeholder="Name" ng-model="currentRecipient.recipientName"></input>
-				<input type="text" placeholder="Phone Number (SMS)" ng-model="currentRecipient.sms"></input>
-				<input type="text" placeholder="Email" ng-model="currentRecipient.email"></input>
+			<form name="messageForm">
+				<input type="text" name="name" placeholder="Name" ng-model="currentRecipient.recipientName"></input>
+				<input type="text" name="sms" placeholder="Phone Number (SMS)" ng-model="currentRecipient.sms"></input>
+				<input type="text" name="emai" placeholder="Email" ng-model="currentRecipient.email"></input>
 				<button ng-click="addRecipient(currentRecipient)">Add Recipient</button>
-				<textarea type="text" placeholder="Message" ng-model="message"></textarea>
+				<textarea type="text" name="message" placeholder="Message" ng-model="message" ng-minlength="1" ng-maxlength="140"></textarea>
+				<p ng-if="messageForm.message.$error.maxlength">Your message is too long, it must be 140 characters or less.</p>
 				<button ng-click="pageService.sendMessage(recipients, message)">Send Message</button>
 			</form>
 		</div>
