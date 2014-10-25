@@ -14,20 +14,97 @@ function($http, $q){
 	
 	pageService.initPromise = initPromise.promise;
 
-	
+	// Store the recipients that have been added to the current message
+	// Track which numbers/emails have been added to avoid duplicates
+	pageService.recipients = [];
+	pageService.smsMemo = {};
+	pageService.emailMemo = {};
+
 	pageService.sendMessage = function(recipients, message){
 		
+
 
 	};
 
 	pageService.autocomplete = function(input_text){
 		
 		
+
 	};
 
-	pageService.addContact = function(contact){
+	// Add valid recipient to list of recipients for the message
+	// Input recipient info passed in from controller, and callback to run
+	//  if recipient info is valid
+	pageService.addRecipient = function(recipient, callback){
+
+		var validRecipient = validateRecipientInfo(recipient);
+
+		if(!validRecipient) {
+			return;
+		}
+
+		// Update smsMemo and emailMemo with new recipient data
+		pageService.smsMemo[validRecipient.sms] = true;
+		pageService.emailMemo[validRecipient.email] = true;
 		
+		var newRecipient = {
+      recipientName: validRecipient.recipientName,
+      sms: validRecipient.sms,
+      email: validRecipient.email
+    };
+
+    pageService.recipients.push(newRecipient);
+    callback();
 		
+	};
+
+	// Check to see if recipient information entered by user is valid for
+	//  that recipient; if not, do not allow that recipient to be added to
+	//  message recipients
+	var validateRecipientInfo = function(recipient) {
+
+		// Do not add a recipient unless phone number or email address is provided
+    if(!recipient.sms && !recipient.email) {
+      return false;
+    }
+
+    // If phone number is provided, check validity; do not add recipient if number is invalid
+    if(recipient.sms) {
+      var numbers = {'0': true, '1':true, '2': true, '3': true, '4': true, '5': true, '6': true, '7': true, '8': true, '9': true};
+      var phoneNumber = '';
+      for(var i = 0; i < recipient.sms.length; i++) {
+        if(numbers[recipient.sms.charAt(i)]) {
+          phoneNumber += recipient.sms.charAt(i);
+        }
+      }
+      if(phoneNumber.length !== 7 && phoneNumber.length !== 10 && phoneNumber.length !== 11) {
+        return false;
+      } else {
+      	if(pageService.smsMemo[phoneNumber]) {
+      		return false;
+      	}
+      }
+    }
+
+    // If email is provided, check validity; do not add recipient if email is invalid
+    if(recipient.email) {
+      var email = recipient.email.split('@');
+      if(email.length === 2) {
+        if(email[1].split('.').length !== 2) {
+          return false;
+        } else {
+        	if(pageService.emailMemo[recipient.email]) {
+        		return false;
+        	}
+        }
+      } else {
+        return false;
+      }
+    }
+
+    recipient.sms = phoneNumber;
+    return recipient;
+
 	};
 
 	return pageService;
