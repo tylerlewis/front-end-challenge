@@ -34,17 +34,25 @@ function($http, $q){
 	};
 
 	// Request names, phone numbers, or emails from server matching user input
-	pageService.autocomplete = function(field, input_text){
+	pageService.autocomplete = function(input_text){
 		
-		var url = '/programming_challenge/autocomplete?' + field + '="' + input_text + '"'; 
+		var url = '/programming_challenge/autocomplete?q=' + input_text; 
 		$http.get(url)
 			.success(function(data, status, headers, config) {
-
+				console.log(data, status, headers, config)
 			})
 			.error(function(data, status, headers, config) {
 
 			});
 
+	};
+
+	// Store suggested recipients from autocomplete results, but do not allow duplicates
+	pageService.suggestions = [];
+	var suggestionsMemo = {
+		name: {},
+		sms: {},
+		email: {}
 	};
 
 	// Add valid recipient to list of recipients for the message
