@@ -25,7 +25,7 @@ function($http, $q){
 		
 		$http.post('/programming_challenge/send', JSON.stringify({message: message, recipients: recipients}))
     	.success(function(data, status, headers, config) {
-
+    		console.log('send: ', data)
     	})
     	.error(function(data, status, headers, config) {
 
@@ -84,7 +84,7 @@ function($http, $q){
     // Send POST request to server to add new recipient to database
     $http.post('/programming_challenge/add', JSON.stringify(newRecipient))
     	.success(function(data, status, headers, config) {
-
+    		console.log('add: ', data)
     	})
     	.error(function(data, status, headers, config) {
 

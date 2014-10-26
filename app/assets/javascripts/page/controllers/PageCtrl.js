@@ -30,6 +30,12 @@ function($scope, $log, $window, $interval, $http, $modal, $location, $anchorScro
       }
     });
   };
+
+  // If user has selected a result from autocomplete, this selection
+  //  will become the currentRecipient
+  $scope.fillInputs = function(suggestion) {
+    $scope.currentRecipient = suggestion;
+  };
   
   // Store recipients for current message
   $scope.recipients = pageService.recipients;
@@ -41,6 +47,7 @@ function($scope, $log, $window, $interval, $http, $modal, $location, $anchorScro
   $scope.addRecipient = function(recipient) {
     pageService.addRecipient(recipient, function() {
       $scope.currentRecipient = {};
+      $scope.displaySuggestions = false;
     });        
   };
 
