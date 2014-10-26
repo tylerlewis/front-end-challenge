@@ -97,7 +97,7 @@ body {
   text-align: center;
 }
 
-.suggestionBox table {
+.suggestionBox table, .recipientsBox table {
   width: 100%;
 }
 
@@ -112,7 +112,7 @@ body {
   border: 1px solid black;
 }
 
-.emailTD {
+.suggestionBox .emailTD, .recipientsBox .emailTD {
   width: 50%;
 }
 

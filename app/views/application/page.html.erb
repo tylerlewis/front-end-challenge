@@ -32,7 +32,7 @@
 
 				<div class="suggestionBox" ng-if="displaySuggestions">
 					<table>
-						<tr ng-repeat="suggestion in suggestions">
+						<tr ng-repeat="suggestion in suggestions" ng-click="fillInputs(suggestion)">
 							<td>{{ suggestion.name }}</td>
 							<td>{{ suggestion.sms }}</td>
 							<td class="emailTD">{{ suggestion.email }}</td>
@@ -44,9 +44,9 @@
 			<div class="recipientsBox">
 				<table>
 					<tr>
-						<td style="width: 200px; border: 1px solid black">Name</td>
-						<td style="width: 200px; border: 1px solid black">Phone Number</td>
-						<td style="width: 400px; border: 1px solid black">Email</td>
+						<td>Name</td>
+						<td>Phone Number</td>
+						<td class="emailTD">Email</td>
 					</tr>
 					<tr ng-repeat="recipient in recipients">
 						<td >{{ recipient.name }}</td>
