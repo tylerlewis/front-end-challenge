@@ -21,7 +21,7 @@ body {
 
 .btn{
   background-color: $btn-default-bg;
-  border: $btn-default-border;
+  border: 1px solid $btn-default-border;
   border-radius: $border-radius-base;
   color: $btn-default-color;
 }
@@ -32,6 +32,7 @@ body {
 
 .btn:hover, .btn.hover{
   background-color: $brand-primary;
+  border: 1px solid $btn-secondary-border;
 }
 
 
@@ -40,9 +41,11 @@ body {
 }
 
 .messageBox {
-  margin: 0;
+  float: left;
+  margin-left: 2%;
+  margin-right: 2%;
   padding: 0;
-  width: 40%;
+  width: 47%;
   border: 1px solid black;
   border-radius: $border-radius-base;
 }
@@ -90,19 +93,36 @@ body {
 }
 
 .suggestionBox {
+  width: 100%;
   text-align: center;
 }
 
+.suggestionBox table {
+  width: 100%;
+}
+
 .suggestionBox tr:hover {
+  cursor: pointer;
   background-color: $brand-secondary;
   color: white;
 }
 
+.suggestionBox td, .recipientsBox td {
+  width: 25%;
+  border: 1px solid black;
+}
+
+.emailTD {
+  width: 50%;
+}
+
 .recipientsBox {
-  margin: 0;
+  float: left;
+  margin-right: 2%;
   padding: 0;
-  width: 40%;
+  width: 47%;
   border: 1px solid black;
   border-radius: $border-radius-base;
+  text-align: center;
 }
 

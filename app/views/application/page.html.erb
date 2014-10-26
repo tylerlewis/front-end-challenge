@@ -10,7 +10,7 @@
 			</div>
 		</div>
 
-		<div class="panel-body">
+		<div class="body">
 			<div class="messageBox">
 				<form name="messageForm">
 					<div class="recipientSection">
@@ -33,25 +33,25 @@
 				<div class="suggestionBox" ng-if="displaySuggestions">
 					<table>
 						<tr ng-repeat="suggestion in suggestions">
-							<td style="width: 200px; border: 1px solid black">{{ suggestion.name }}</td>
-							<td style="width: 200px; border: 1px solid black">{{ suggestion.sms }}</td>
-							<td style="width: 400px; border: 1px solid black">{{ suggestion.email }}</td>
+							<td>{{ suggestion.name }}</td>
+							<td>{{ suggestion.sms }}</td>
+							<td class="emailTD">{{ suggestion.email }}</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 
 			<div class="recipientsBox">
-				<table style="text-align: center">
+				<table>
 					<tr>
 						<td style="width: 200px; border: 1px solid black">Name</td>
 						<td style="width: 200px; border: 1px solid black">Phone Number</td>
 						<td style="width: 400px; border: 1px solid black">Email</td>
 					</tr>
 					<tr ng-repeat="recipient in recipients">
-						<td style="width: 200px; border: 1px solid black">{{ recipient.name }}</td>
-						<td style="width: 200px; border: 1px solid black">{{ recipient.sms }}</td>
-						<td style="width: 400px; border: 1px solid black">{{ recipient.email }}</td>
+						<td >{{ recipient.name }}</td>
+						<td >{{ recipient.sms }}</td>
+						<td class="emailTD">{{ recipient.email }}</td>
 					</tr>
 				</table>
 			</div>
