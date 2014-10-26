@@ -20,7 +20,11 @@ function($scope, $log, $window, $interval, $http, $modal, $location, $anchorScro
 
   // Check if user inputs can be autocompleted
   $scope.autocomplete = function(text) {
-    pageService.autocomplete(text);
+    pageService.autocomplete(text, function(suggestions) {
+      // If suggestions are returned, bind them to the view
+      $scope.suggestions = suggestions;
+      $scope.displaySuggestions = true;
+    });
   };
   
   // Store recipients for current message
