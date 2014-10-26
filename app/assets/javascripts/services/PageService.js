@@ -21,11 +21,14 @@ function($http, $q){
 	pageService.emailMemo = {};
 
 	// Send valid message with valid list of recipients to server
-	pageService.sendMessage = function(recipients, message){
-		
-		$http.post('/programming_challenge/send', JSON.stringify({message: message, recipients: recipients}))
+	// If successful, reset list of recipients
+	pageService.sendMessage = function(recipients, message, callback){
+		$http.post('http://localhost:3000/programming_challenge/send', JSON.stringify({message: message, recipients: recipients}))
     	.success(function(data, status, headers, config) {
-    		console.log('send: ', data)
+    		pageService.recipients = [];
+    		pageService.smsMemo = {};
+    		pageService.emailMemo = {};
+    		callback();
     	})
     	.error(function(data, status, headers, config) {
 
@@ -36,7 +39,7 @@ function($http, $q){
 	// Request names, phone numbers, or emails from server matching user input
 	pageService.autocomplete = function(input_text, callback){
 		
-		var url = '/programming_challenge/autocomplete?q=' + input_text; 
+		var url = 'http://localhost:3000/programming_challenge/autocomplete?q=' + input_text; 
 		$http.get(url)
 			.success(function(data, status, headers, config) {
 				// If contacts were found matching user input criteria, store them and relay them back to the controller
@@ -82,9 +85,9 @@ function($http, $q){
     pageService.recipients.push(newRecipient);
 
     // Send POST request to server to add new recipient to database
-    $http.post('/programming_challenge/add', JSON.stringify(newRecipient))
+    $http.post('http://localhost:3000/programming_challenge/add', JSON.stringify(newRecipient))
     	.success(function(data, status, headers, config) {
-    		console.log('add: ', data)
+
     	})
     	.error(function(data, status, headers, config) {
 

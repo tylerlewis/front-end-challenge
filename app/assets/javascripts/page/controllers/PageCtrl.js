@@ -51,7 +51,21 @@ function($scope, $log, $window, $interval, $http, $modal, $location, $anchorScro
     });        
   };
 
+  // Bind message input to scope
   $scope.message = '';
+
+  // Pass recipients and message along to pageService; if successfully sent, reset recipients and message for new message
+  $scope.sendMessage = function(message, recipients) {
+    pageService.sendMessage(message, recipients, function() {
+      $scope.recipients = pageService.recipients;
+      $scope.message = '';
+      $scope.successfullySent = true;
+      setTimeout(function() {
+        $scope.successfullySent = false;
+        $scope.$apply();
+      }, 2000);
+    });
+  };
 
 }]);
 
