@@ -33,9 +33,17 @@ function($http, $q){
 
 	};
 
-	pageService.autocomplete = function(input_text){
+	// Request names, phone numbers, or emails from server matching user input
+	pageService.autocomplete = function(field, input_text){
 		
-		
+		var url = '/programming_challenge/autocomplete?' + field + '="' + input_text + '"'; 
+		$http.get(url)
+			.success(function(data, status, headers, config) {
+
+			})
+			.error(function(data, status, headers, config) {
+
+			});
 
 	};
 
