@@ -5,16 +5,25 @@
 
 /** BEGIN BASIC ELEMENT STYLING **/
 
+body {
+  background-color: $body-bg;
+  color: $text-color;
+  height: 100vh;
+}
+
 .primary-color{
-	color:$brand-primary;
+	color: $brand-primary;
 }
 
 .secondary-color{
-	color:$brand-secondary;
+	color: $brand-secondary;
 }
 
 .btn{
-	
+  background-color: $btn-default-bg;
+  border: $btn-default-border;
+  border-radius: $border-radius-base;
+  color: $btn-default-color;
 }
 
 .btn:active, .btn.active{
@@ -22,10 +31,78 @@
  }
 
 .btn:hover, .btn.hover{
-	
+  background-color: $brand-primary;
 }
 
 
 .btn.disabled, .btn.disabled:hover{
 	
 }
+
+.messageBox {
+  margin: 0;
+  padding: 0;
+  width: 40%;
+  border: 1px solid black;
+  border-radius: $border-radius-base;
+}
+
+.recipientSection, .messageSection {
+  margin: 0;
+  padding: 0;
+  width: 100%
+}
+
+.recipientSection input, .recipientSection .btn {
+  margin-bottom: 1vh;
+}
+
+.recipientSection input {
+  float: left;
+  margin-top: 1vh;
+  margin-right: 6.25%;
+  width: 25%;
+}
+
+.recipientSection #firstInput {
+  margin-left: 6.25%;
+}
+
+.recipientSection .btn {
+  margin-left: 6.25%;
+}
+
+.messageSection textarea, .messageSection .btn {
+  display: block;
+  margin-bottom: 1vh;
+  margin-left: 6.25%;
+}
+
+.suggestionHeader {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.suggestionHeader h3 {
+  margin: 0 0 1vh 6.25%;
+  padding: 0;
+}
+
+.suggestionBox {
+  text-align: center;
+}
+
+.suggestionBox tr:hover {
+  background-color: $brand-secondary;
+  color: white;
+}
+
+.recipientsBox {
+  margin: 0;
+  padding: 0;
+  width: 40%;
+  border: 1px solid black;
+  border-radius: $border-radius-base;
+}
+
