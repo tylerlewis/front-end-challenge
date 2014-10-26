@@ -40,13 +40,16 @@ function($http, $q){
 		$http.get(url)
 			.success(function(data, status, headers, config) {
 				// If contacts were found matching user input criteria, store them and relay them back to the controller
-				if(data.response.contacts.length) {
-					var suggestions = [];
-					for(var i = 0; i < data.response.contacts.length; i++) {
-						suggestions.push(data.response.contacts[i]);
-					}
-					callback(suggestions);
+				if(!data.response.contacts) {
+					return callback(true);
 				}
+
+				var suggestions = [];
+				for(var i = 0; i < data.response.contacts.length; i++) {
+					suggestions.push(data.response.contacts[i]);
+				}
+				callback(null, suggestions);
+
 			})
 			.error(function(data, status, headers, config) {
 
