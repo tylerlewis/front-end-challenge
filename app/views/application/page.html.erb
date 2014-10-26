@@ -10,42 +10,51 @@
 			</div>
 		</div>
 
-		<div class="panel-body"></div>
+		<div class="panel-body">
+			<div class="messageBox">
+				<form name="messageForm">
+					<div class="recipientSection">
+						<input id="firstInput" type="text" name="name" placeholder="Name" ng-model="currentRecipient.name" ng-change="autocomplete(currentRecipient.name)"></input>
+						<input type="text" name="sms" placeholder="Phone Number" ng-model="currentRecipient.sms" ng-change="autocomplete(currentRecipient.sms)"></input>
+						<input type="text" name="emai" placeholder="Email" ng-model="currentRecipient.email" ng-change="autocomplete(currentRecipient.email)"></input>
+						<button class="btn" ng-click="addRecipient(currentRecipient)">Add Recipient</button>
+					</div>
+					<div class="messageSection">
+						<textarea type="text" name="message" placeholder="Message" ng-model="message" ng-minlength="1" ng-maxlength="140"></textarea>
+						<p ng-if="messageForm.message.$error.maxlength">Your message is too long, it must be 140 characters or less.</p>
+						<button class="btn" ng-click="pageService.sendMessage(recipients, message)">Send Message</button>
+					</div>
+				</form>
 
-		<div class="messageBox">
-			<form name="messageForm">
-				<input type="text" name="name" placeholder="Name" ng-model="currentRecipient.name" ng-change="autocomplete(currentRecipient.name)"></input>
-				<input type="text" name="sms" placeholder="Phone Number" ng-model="currentRecipient.sms" ng-change="autocomplete(currentRecipient.sms)"></input>
-				<input type="text" name="emai" placeholder="Email" ng-model="currentRecipient.email" ng-change="autocomplete(currentRecipient.email)"></input>
-				<button ng-click="addRecipient(currentRecipient)">Add Recipient</button>
-				<textarea type="text" name="message" placeholder="Message" ng-model="message" ng-minlength="1" ng-maxlength="140"></textarea>
-				<p ng-if="messageForm.message.$error.maxlength">Your message is too long, it must be 140 characters or less.</p>
-				<button ng-click="pageService.sendMessage(recipients, message)">Send Message</button>
-			</form>
-			<div class="suggestionBox" ng-if="displaySuggestions">
-				<table>
-					<tr ng-repeat="suggestion in suggestions">
-						<td style="width: 200px; border: 1px solid black">{{ suggestion.name }}</td>
-						<td style="width: 200px; border: 1px solid black">{{ suggestion.sms }}</td>
-						<td style="width: 400px; border: 1px solid black">{{ suggestion.email }}</td>
+				<div class="suggestionHeader">
+					<h3>Suggestions:</h3>
+				</div>
+
+				<div class="suggestionBox" ng-if="displaySuggestions">
+					<table>
+						<tr ng-repeat="suggestion in suggestions">
+							<td style="width: 200px; border: 1px solid black">{{ suggestion.name }}</td>
+							<td style="width: 200px; border: 1px solid black">{{ suggestion.sms }}</td>
+							<td style="width: 400px; border: 1px solid black">{{ suggestion.email }}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="recipientsBox">
+				<table style="text-align: center">
+					<tr>
+						<td style="width: 200px; border: 1px solid black">Name</td>
+						<td style="width: 200px; border: 1px solid black">Phone Number</td>
+						<td style="width: 400px; border: 1px solid black">Email</td>
+					</tr>
+					<tr ng-repeat="recipient in recipients">
+						<td style="width: 200px; border: 1px solid black">{{ recipient.name }}</td>
+						<td style="width: 200px; border: 1px solid black">{{ recipient.sms }}</td>
+						<td style="width: 400px; border: 1px solid black">{{ recipient.email }}</td>
 					</tr>
 				</table>
 			</div>
-		</div>
-
-		<div class="recipientsBox">
-			<table style="text-align: center">
-				<tr>
-					<td style="width: 200px; border: 1px solid black">Name</td>
-					<td style="width: 200px; border: 1px solid black">Phone Number</td>
-					<td style="width: 400px; border: 1px solid black">Email</td>
-				</tr>
-				<tr ng-repeat="recipient in recipients">
-					<td style="width: 200px; border: 1px solid black">{{ recipient.name }}</td>
-					<td style="width: 200px; border: 1px solid black">{{ recipient.sms }}</td>
-					<td style="width: 400px; border: 1px solid black">{{ recipient.email }}</td>
-				</tr>
-			</table>
 		</div>
 
 	</div>
