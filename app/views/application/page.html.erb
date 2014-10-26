@@ -14,9 +14,9 @@
 
 		<div class="messageBox">
 			<form name="messageForm">
-				<input type="text" name="name" placeholder="Name" ng-model="currentRecipient.name"></input>
-				<input type="text" name="sms" placeholder="Phone Number" ng-model="currentRecipient.sms"></input>
-				<input type="text" name="emai" placeholder="Email" ng-model="currentRecipient.email"></input>
+				<input type="text" name="name" placeholder="Name" ng-model="currentRecipient.name" ng-change="autocomplete('name', currentRecipient.name)"></input>
+				<input type="text" name="sms" placeholder="Phone Number" ng-model="currentRecipient.sms" ng-change="autocomplete('phone', currentRecipient.sms)"></input>
+				<input type="text" name="emai" placeholder="Email" ng-model="currentRecipient.email" ng-change="autocomplete('email', currentRecipient.email)"></input>
 				<button ng-click="addRecipient(currentRecipient)">Add Recipient</button>
 				<textarea type="text" name="message" placeholder="Message" ng-model="message" ng-minlength="1" ng-maxlength="140"></textarea>
 				<p ng-if="messageForm.message.$error.maxlength">Your message is too long, it must be 140 characters or less.</p>
