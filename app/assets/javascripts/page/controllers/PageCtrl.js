@@ -17,6 +17,11 @@ angular.module("page.controllers").controller("PageCtrl", [
 function($scope, $log, $window, $interval, $http, $modal, $location, $anchorScroll, pageService){
 
 	$scope.pageService = pageService;
+
+  // Check if user inputs can be autocompleted
+  $scope.autocomplete = function(text) {
+    pageService.autocomplete(text);
+  };
   
   // Store recipients for current message
   $scope.recipients = pageService.recipients;
